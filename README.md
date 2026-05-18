@@ -1,218 +1,237 @@
-\# QuantLab AI
+<div align="center">
 
+# QuantLab AI
 
+### Modern ASX Financial Analytics Platform
 
-Modern ASX financial analytics platform built with:
+Fullstack quantitative analytics platform for ASX equities built with Python, FastAPI, React, ETL pipelines, risk analytics, and interactive dashboards.
 
+---
 
+![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-Build-purple?style=for-the-badge&logo=vite)
+![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite)
+![Status](https://img.shields.io/badge/Status-In_Development-orange?style=for-the-badge)
 
-\- FastAPI
+</div>
 
-\- React
+---
 
-\- Python
+# Overview
 
-\- ETL pipelines
-
-\- Financial analytics
-
-\- Risk metrics
-
-\- Backtesting
-
-\- Interactive market dashboards
-
-
-
-\---
-
-
-
-\# Project Goal
-
-
-
-QuantLab AI is a fullstack financial analytics and market research platform focused on ASX equities.
-
-
+QuantLab AI is a modern fullstack financial analytics platform focused on the Australian Securities Exchange (ASX).
 
 The project demonstrates:
 
+- Financial data engineering
+- Quantitative analytics
+- ETL pipeline development
+- Risk analysis
+- Portfolio analytics
+- Time-series processing
+- REST API architecture
+- Interactive frontend dashboards
+- Fullstack software engineering
 
+---
 
-\- Financial data engineering
+# Project Goals
 
-\- Time-series analytics
+This platform is designed to:
 
-\- Quantitative/statistical analysis
+- Analyze ASX market data
+- Visualize financial trends
+- Calculate risk metrics
+- Compare sectors and companies
+- Backtest investment strategies
+- Demonstrate professional financial engineering skills
 
-\- Python ETL pipelines
+---
 
-\- Risk analysis
+# Tech Stack
 
-\- Fullstack architecture
+## Frontend
 
-\- Modern API development
+| Technology | Purpose |
+|---|---|
+| React | Frontend UI |
+| Vite | Build system |
+| Material UI | UI framework |
+| Plotly.js | Financial charts |
+| Axios | API communication |
+| React Router | Routing |
 
-\- Interactive frontend dashboards
+---
 
+## Backend
 
+| Technology | Purpose |
+|---|---|
+| FastAPI | REST API |
+| Python 3.13 | Core backend |
+| Pandas | Data analysis |
+| NumPy | Numerical computing |
+| SQLAlchemy | ORM |
+| yfinance | Market data |
 
-\---
+---
 
+## Database
 
+| Database | Usage |
+|---|---|
+| SQLite | MVP database |
+| PostgreSQL | Future scaling |
 
-\# Tech Stack
+---
 
+# Planned Features
 
+## Market Explorer
 
-\## Frontend
+- ASX stock filtering
+- Sector analysis
+- Market cap filtering
+- Volatility analysis
 
-\- React
+---
 
-\- Vite
+## Financial Charts
 
-\- Material UI
+- OHLC charts
+- Moving averages
+- RSI
+- MACD
+- Volume analysis
 
-\- Plotly.js
+---
 
-\- Axios
+## Risk Analytics
 
-\- React Router
+- Volatility
+- Sharpe Ratio
+- Max Drawdown
+- Correlation Matrix
+- Rolling volatility
 
+---
 
+## Portfolio Analytics
 
-\## Backend
+- Portfolio performance
+- Risk exposure
+- Sector concentration
+- Portfolio comparison
 
-\- FastAPI
+---
 
-\- Python 3.13
+## Backtesting Engine
 
-\- Pandas
+Strategies:
 
-\- NumPy
+- Buy & Hold
+- SMA Crossover
+- RSI Strategy
 
-\- SQLAlchemy
+Metrics:
 
-\- yfinance
+- Total Return
+- Annual Return
+- Win Rate
+- Sharpe Ratio
+- Benchmark comparison
 
+---
 
-
-\## Database
-
-\- SQLite (initial MVP)
-
-\- PostgreSQL (future)
-
-
-
-\---
-
-
-
-\# Planned Features
-
-
-
-\- ASX Market Explorer
-
-\- Interactive Financial Charts
-
-\- ETL Data Pipeline
-
-\- Risk Analytics
-
-\- Portfolio Analysis
-
-\- Strategy Backtesting
-
-\- AI-generated Market Summaries
-
-
-
-\---
-
-
-
-\# Architecture
-
-
+# System Architecture
 
 ```text
-
 Yahoo Finance API
-
-&#x20;       ↓
-
+        ↓
 ETL Pipeline
-
-&#x20;       ↓
-
+        ↓
 SQLite Database
-
-&#x20;       ↓
-
+        ↓
 Analytics Engine
-
-&#x20;       ↓
-
+        ↓
 FastAPI REST API
-
-&#x20;       ↓
-
+        ↓
 React Frontend Dashboard
-
 ```
 
+---
 
+# Project Structure
 
-\---
+```text
+quantlab-ai/
+│
+├── backend/
+│   ├── app/
+│   ├── analytics/
+│   ├── etl/
+│   ├── models/
+│   ├── routers/
+│   └── db/
+│
+├── frontend/
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── charts/
+│   └── services/
+│
+├── data/
+├── docs/
+└── README.md
+```
 
+---
 
+# Current Status
 
-\# Current Status
+Project initialization and architecture setup in progress.
 
+---
 
+# Future Roadmap
 
-Project setup and architecture initialization.
+- Real-time market streaming
+- AI-generated summaries
+- Portfolio optimization
+- Machine learning analytics
+- WebSocket live data
+- Docker deployment
+- CI/CD pipelines
 
+---
 
+# Why This Project Matters
 
-\---
+QuantLab AI is not intended to be a hedge-fund production platform.
 
+Instead, the goal is to demonstrate:
 
+- strong quantitative thinking
+- modern backend engineering
+- financial analytics workflows
+- scalable architecture
+- professional fullstack development
 
-\# Development Goals
+---
 
+# Author
 
-
-This project is intended to demonstrate:
-
-
-
-\- strong software engineering
-
-\- financial analytics workflows
-
-\- quantitative thinking
-
-\- clean architecture
-
-\- scalable fullstack development
-
-
-
-\---
-
-
-
-\# Author
-
-
-
-Amin Aram
-
-
+## Amin Aram
 
 Melbourne, Australia
 
+Fullstack Developer | Python Developer | Financial Analytics Enthusiast
+
+---
+
+# License
+
+MIT License
