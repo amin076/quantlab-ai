@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import stocks
 from app.routers import health
 from app.routers import prices
+from app.routers import analytics
 
 app = FastAPI(
     title="QuantLab AI API",
@@ -21,6 +22,8 @@ app.add_middleware(
 app.include_router(health.router, prefix="/api", tags=["Health"])
 app.include_router(stocks.router, prefix="/api", tags=["Stocks"])
 app.include_router(prices.router, prefix="/api", tags=["Prices"])
+app.include_router(analytics.router, prefix="/api", tags=["Analytics"])
+
 @app.get("/")
 def root():
     return {
