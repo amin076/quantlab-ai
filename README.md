@@ -224,7 +224,7 @@ Instead, the goal is to demonstrate:
 
 # Author
 
-## Amin Aram
+## Amin Nazari
 
 Melbourne, Australia
 
