@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.routers import stocks
 from app.routers import health
 
 app = FastAPI(
@@ -18,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(health.router, prefix="/api", tags=["Health"])
+app.include_router(stocks.router, prefix="/api", tags=["Stocks"])
 
 
 @app.get("/")
