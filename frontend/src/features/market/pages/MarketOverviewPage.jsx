@@ -5,33 +5,33 @@ import {
   Button,
   CircularProgress,
   Grid,
-  Paper,
   Stack,
   Typography,
 } from "@mui/material";
 import SyncIcon from "@mui/icons-material/Sync";
 
+import MetricCard from "../../../components/cards/MetricCard";
+import SearchBar from "../../../components/common/SearchBar";
 import MarketTable from "../components/MarketTable";
 import { getDatabaseStocks, syncAsxTopStocks } from "../../../api/stocksApi";
-function MetricCard({ label, value }) {
-  return (
-    <Paper sx={{ p: 3, height: "100%" }}>
-      <Typography color="text.secondary" variant="body2">
-        {label}
-      </Typography>
-      <Typography variant="h5" fontWeight={800} sx={{ mt: 1 }}>
-        {value}
-      </Typography>
-    </Paper>
-  );
-}
 
 export default function MarketOverviewPage() {
   const [stocks, setStocks] = useState([]);
   const [source, setSource] = useState("");
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
   const [error, setError] = useState("");
+
+  const filteredStocks = stocks.filter((stock) => {
+    const searchValue = search.toLowerCase();
+
+    return (
+      stock.ticker?.toLowerCase().includes(searchValue) ||
+      stock.name?.toLowerCase().includes(searchValue) ||
+      stock.sector?.toLowerCase().includes(searchValue)
+    );
+  });
 
   const loadStocks = async () => {
     try {
@@ -79,6 +79,7 @@ export default function MarketOverviewPage() {
           <Typography variant="h3" fontWeight={900}>
             Market Overview
           </Typography>
+
           <Typography color="text.secondary" sx={{ mt: 1 }}>
             Database-backed ASX market dashboard powered by FastAPI,
             SQLAlchemy, SQLite, and Yahoo Finance.
@@ -103,25 +104,40 @@ export default function MarketOverviewPage() {
 
       <Grid container spacing={3} sx={{ mt: 1 }}>
         <Grid item xs={12} md={3}>
-          <MetricCard label="Market" value="ASX" />
+          <MetricCard label="Market" value="ASX" subtitle="Australian equities" />
         </Grid>
+
         <Grid item xs={12} md={3}>
-          <MetricCard label="Stored Stocks" value={stocks.length} />
+          <MetricCard
+            label="Stored Stocks"
+            value={stocks.length}
+            subtitle={`${filteredStocks.length} visible`}
+          />
         </Grid>
+
         <Grid item xs={12} md={3}>
           <MetricCard label="Data Source" value={source || "Database"} />
         </Grid>
+
         <Grid item xs={12} md={3}>
-          <MetricCard label="Backend" value="FastAPI" />
+          <MetricCard label="Backend" value="FastAPI" subtitle="SQLite-backed API" />
         </Grid>
       </Grid>
+
+      <Box sx={{ mt: 4 }}>
+        <SearchBar
+          value={search}
+          onChange={setSearch}
+          placeholder="Search ticker, company, or sector..."
+        />
+      </Box>
 
       {loading ? (
         <Box sx={{ mt: 5, display: "flex", justifyContent: "center" }}>
           <CircularProgress />
         </Box>
       ) : (
-        <MarketTable stocks={stocks} />
+        <MarketTable stocks={filteredStocks} />
       )}
     </Box>
   );

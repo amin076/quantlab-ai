@@ -1,6 +1,5 @@
 import {
   Alert,
-  Box,
   Chip,
   Paper,
   Table,
@@ -25,18 +24,30 @@ function formatMarketCap(value) {
   return `$${value.toLocaleString()}`;
 }
 
+function formatPrice(price, currency) {
+  if (!price) return "N/A";
+  return `${Number(price).toFixed(2)} ${currency || ""}`;
+}
+
 export default function MarketTable({ stocks }) {
   if (!stocks || stocks.length === 0) {
     return (
-      <Alert severity="info">
-        No database-backed stock data available. Run the sync action first.
+      <Alert severity="warning" sx={{ mt: 3 }}>
+        No stocks match the current search or database state.
       </Alert>
     );
   }
 
   return (
-    <TableContainer component={Paper} sx={{ mt: 3 }}>
-      <Table>
+    <TableContainer
+      component={Paper}
+      sx={{
+        mt: 3,
+        border: "1px solid rgba(148, 163, 184, 0.14)",
+        overflow: "hidden",
+      }}
+    >
+      <Table stickyHeader>
         <TableHead>
           <TableRow>
             <TableCell>Ticker</TableCell>
@@ -49,19 +60,37 @@ export default function MarketTable({ stocks }) {
 
         <TableBody>
           {stocks.map((stock) => (
-            <TableRow key={stock.ticker} hover>
+            <TableRow
+              key={stock.ticker}
+              hover
+              sx={{
+                transition: "0.2s ease",
+                "&:hover": {
+                  backgroundColor: "rgba(56, 189, 248, 0.08)",
+                },
+              }}
+            >
               <TableCell>
                 <Chip label={stock.ticker} color="primary" size="small" />
               </TableCell>
+
               <TableCell>{stock.name || "N/A"}</TableCell>
-              <TableCell>{stock.sector || "N/A"}</TableCell>
+
+              <TableCell>
+                <Chip
+                  label={stock.sector || "N/A"}
+                  size="small"
+                  color="secondary"
+                  variant="outlined"
+                />
+              </TableCell>
+
               <TableCell align="right">
                 {formatMarketCap(stock.market_cap)}
               </TableCell>
+
               <TableCell align="right">
-                {stock.current_price
-                  ? `${stock.current_price} ${stock.currency || ""}`
-                  : "N/A"}
+                {formatPrice(stock.current_price, stock.currency)}
               </TableCell>
             </TableRow>
           ))}
