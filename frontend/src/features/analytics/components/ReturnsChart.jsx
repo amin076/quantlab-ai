@@ -7,31 +7,32 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { Paper, Typography } from "@mui/material";
+import { Box, Paper, Skeleton, Typography } from "@mui/material";
 
-export default function ReturnsChart({ data }) {
+export default function ReturnsChart({ data, loading }) {
   return (
-    <Paper sx={{ p: 3, mt: 3 }}>
+    <Paper sx={{ p: 4, mt: 0, borderRadius: 4, width: "100%" }}>
       <Typography variant="h6" fontWeight={800} sx={{ mb: 2 }}>
         Cumulative Returns
       </Typography>
 
-      <div style={{ width: "100%", height: 320 }}>
-        <ResponsiveContainer>
-          <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-            <XAxis dataKey="Date" hide />
-            <YAxis domain={["auto", "auto"]} tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} />
-            <Tooltip formatter={(value) => `${(Number(value) * 100).toFixed(2)}%`} />
-            <Line
-              type="monotone"
-              dataKey="cumulative_return"
-              strokeWidth={2}
-              dot={false}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+      {loading ? (
+        <Skeleton variant="rounded" height={440} />
+      ) : data?.length ? (
+        <Box sx={{ width: "100%", height: { xs: 340, md: 440 } }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data} margin={{ top: 10, right: 24, left: 8, bottom: 10 }}>
+              <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+              <XAxis dataKey="Date" hide />
+              <YAxis tickFormatter={(value) => `${(value * 100).toFixed(0)}%`} width={60} />
+              <Tooltip formatter={(value) => `${(Number(value) * 100).toFixed(2)}%`} />
+              <Line type="monotone" dataKey="cumulative_return" stroke="#22c55e" strokeWidth={2.5} dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </Box>
+      ) : (
+        <Typography color="text.secondary">Click Load / Refresh Analytics to load returns data.</Typography>
+      )}
     </Paper>
   );
 }
