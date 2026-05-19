@@ -1,11 +1,27 @@
 import { Box, Stack, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const navItems = [
-  "Market Overview",
-  "Analytics",
-  "Risk Metrics",
-  "Portfolio",
-  "Backtesting",
+  {
+    label: "Market Overview",
+    path: "/market",
+  },
+  {
+    label: "Analytics",
+    path: "/analytics",
+  },
+  {
+    label: "Risk Metrics",
+    path: "/risk",
+  },
+  {
+    label: "Portfolio",
+    path: "/portfolio",
+  },
+  {
+    label: "Backtesting",
+    path: "/backtesting",
+  },
 ];
 
 export default function Sidebar() {
@@ -26,20 +42,37 @@ export default function Sidebar() {
       </Typography>
 
       <Stack spacing={1.5}>
-        {navItems.map((item, index) => (
-          <Box
-            key={item}
-            sx={{
-              px: 2,
-              py: 1.4,
-              borderRadius: 2,
-              color: index === 0 ? "text.primary" : "text.secondary",
-              bgcolor: index === 0 ? "rgba(59, 130, 246, 0.18)" : "transparent",
-              fontWeight: index === 0 ? 700 : 500,
-            }}
+        {navItems.map((item) => (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            style={{ textDecoration: "none" }}
           >
-            {item}
-          </Box>
+            {({ isActive }) => (
+              <Box
+                sx={{
+                  px: 2,
+                  py: 1.4,
+                  borderRadius: 2,
+                  color: isActive
+                    ? "text.primary"
+                    : "text.secondary",
+                  bgcolor: isActive
+                    ? "rgba(59, 130, 246, 0.18)"
+                    : "transparent",
+                  fontWeight: isActive ? 700 : 500,
+                  transition: "0.2s ease",
+
+                  "&:hover": {
+                    bgcolor: "rgba(59, 130, 246, 0.12)",
+                    color: "text.primary",
+                  },
+                }}
+              >
+                {item.label}
+              </Box>
+            )}
+          </NavLink>
         ))}
       </Stack>
     </Box>
